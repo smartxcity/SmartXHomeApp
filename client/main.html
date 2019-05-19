@@ -1,0 +1,56 @@
+<head>
+    <title>SmartXHomeApp</title>
+</head>
+
+<body>
+    <h1 class="text-center">Welcome to SmartX Home!</h1>
+    {{> SmartXHome}}
+</body>
+<template name="SmartXHome">
+    {{allStatus}}
+    <div class="row text-center">
+        <div class="col-xs-12 margin-class">
+            <div class="vertical-align">Light 1</div>
+            <label class="switch vertical-align">
+                <input type="checkbox" class="light-switch" data-id="light1" {{deivceStatus 'light1'}}>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="col-xs-12 margin-class">
+            <div class="vertical-align"> Light 2</div>
+            <label class="switch vertical-align">
+                <input type="checkbox" class="light-switch" data-id="light2" {{deivceStatus 'light2'}}>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="col-xs-12 margin-class">
+            <div class="vertical-align">Light 3</div>
+            <label class="switch vertical-align">
+                <input type="checkbox" class="light-switch" data-id="light3" {{deivceStatus 'light3'}}>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="col-xs-12 margin-class">
+            <div class="vertical-align">Light 4</div>
+            <label class="switch vertical-align">
+                <input type="checkbox" class="light-switch" data-id="light4" {{deivceStatus 'light4'}}>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="col-xs-12 margin-class">
+            <div class="vertical-align">Light 5</div>
+            <label class="switch vertical-align">
+                <input type="checkbox" class="light-switch" data-id="light5" {{deivceStatus 'light5'}}>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="col-xs-12 margin-class">
+            <div class="vertical-align">Light 6</div>
+            <label class="switch vertical-align">
+                <input type="checkbox" class="light-switch" data-id="light6" {{deivceStatus 'light6'}}>
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    <!-- Rounded switch -->
+</template>
