@@ -1,13 +1,44 @@
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>SmartXHomeApp</title>
+    <meta name="description" content="Fasal">
+    <!-- mobile meta -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#ffaa00">
 </head>
 
 <body>
-    <h1 class="text-center">Welcome to SmartX Home!</h1>
-    {{> SmartXHome}}
+    {{>appLayout}}
 </body>
+<template name="appLayout">
+    <main class="main-layout">
+        {{> sAlert}}
+        {{> Template.dynamic template=main}}
+    </main>
+</template>
+<template name="login">
+    <form id="login-form">
+        <h2>Log In</h2>
+        <div class="form-group">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" placeholder="Username" class="form-control required" />
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="Password" class="form-control required" />
+        </div>
+        <button type="submit" class="btn btn-primary">Log In</button>
+    </form>
+</template>
 <template name="SmartXHome">
-    {{allStatus}}
+    <div id="logout-button" class="text-right"><u>logout</u></div>
+    <h1 class="text-center">Welcome to SmartX Home!</h1>
     <div class="row text-center">
         <div class="col-xs-12 margin-class">
             <div class="vertical-align">Light 1</div>
@@ -52,5 +83,4 @@
             </label>
         </div>
     </div>
-    <!-- Rounded switch -->
 </template>
