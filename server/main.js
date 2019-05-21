@@ -3,7 +3,7 @@ import mqtt from 'mqtt';
 const deviceStatus = new Mongo.Collection('deviceStatus');
 
 Meteor.startup(() => {
-  const client = mqtt.connect('mqtt://13.235.15.87', { 'clientId': 'smartHomeBackenddev' });
+  const client = mqtt.connect('mqtt://13.235.15.87', { 'clientId': 'smartHomeBackend' });
   // code to run on server at startup
   client.on('connect', function() {
     console.log('client connected');

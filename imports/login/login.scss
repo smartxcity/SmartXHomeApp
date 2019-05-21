@@ -1,0 +1,25 @@
+@import '../../variables.scss';
+
+@media (min-width: $breakpoint-tablet) {
+    .login-form {
+        width: 320px;
+    }
+}
+
+.login-form {
+    margin: auto;
+    padding: 15px;
+
+    .login-logo {
+        text-align: center;
+        img{
+        	width: 100px;
+        }
+    }
+}
+
+.login-button {
+    width: 100%;
+    background: white;
+    color: #1180ff;
+}

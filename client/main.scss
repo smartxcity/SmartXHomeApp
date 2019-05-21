@@ -1,6 +1,14 @@
+@import '../imports/login/login.scss';
+@import '../imports/layout/sidebar.scss';
+
 body {
-    padding: 10px;
     font-family: sans-serif;
+}
+
+.login-background {
+    background: #1180ff;
+    color: white;
+    height: 100vh;
 }
 
 .switch {

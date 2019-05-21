@@ -1,3 +1,5 @@
+import { FlowRouter } from 'meteor/kadira:flow-router';
+
 function checkLoggedIn(ctx, redirect) {
   if (!Meteor.userId()) {
     redirect('/')
@@ -23,7 +25,9 @@ FlowRouter.route('/', {
     redirectIfLoggedIn
   ],
   action() {
-    BlazeLayout.render('appLayout', { main: 'login' });
+    import('/imports/login/login.js').then(() => {
+      BlazeLayout.render('outAppLayout', { main: 'login' });
+    });
   }
 });
 
@@ -33,6 +37,8 @@ FlowRouter.route('/dashboard', {
     checkLoggedIn
   ],
   action() {
-    BlazeLayout.render('appLayout', { main: 'SmartXHome' });
+    import('/imports/dashboard/dashboard.js').then(() => {
+      BlazeLayout.render('inAppLayout', { sidebar: 'sidebar', main: 'SmartXHomeDashBoard' });
+    });
   }
 });

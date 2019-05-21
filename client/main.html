@@ -7,80 +7,40 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#ffaa00">
 </head>
 
 <body>
-    {{>appLayout}}
+    {{#if currentUser}}
+    {{>inAppLayout}}
+    {{else}}
+    {{>outAppLayout}}
+    {{/if}}
 </body>
-<template name="appLayout">
-    <main class="main-layout">
-        {{> sAlert}}
-        {{> Template.dynamic template=main}}
-    </main>
+<template name="outAppLayout">
+    {{> sAlert}}
+    {{> Template.dynamic template=main}}
 </template>
-<template name="login">
-    <form id="login-form">
-        <h2>Log In</h2>
-        <div class="form-group">
-            <label for="login-username">Username</label>
-            <input type="text" id="login-username" placeholder="Username" class="form-control required" />
-        </div>
-        <div class="form-group">
-            <label for="login-password">Password</label>
-            <input type="password" id="login-password" placeholder="Password" class="form-control required" />
-        </div>
-        <button type="submit" class="btn btn-primary">Log In</button>
-    </form>
+<template name="inAppLayout">
+    {{> sAlert}}
+    {{> Template.dynamic template=sidebar}}
+    {{> Template.dynamic template=main}}
 </template>
-<template name="SmartXHome">
-    <div id="logout-button" class="text-right"><u>logout</u></div>
-    <h1 class="text-center">Welcome to SmartX Home!</h1>
-    <div class="row text-center">
-        <div class="col-xs-12 margin-class">
-            <div class="vertical-align">Light 1</div>
-            <label class="switch vertical-align">
-                <input type="checkbox" class="light-switch" data-id="light1" {{deivceStatus 'light1'}}>
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <div class="col-xs-12 margin-class">
-            <div class="vertical-align"> Light 2</div>
-            <label class="switch vertical-align">
-                <input type="checkbox" class="light-switch" data-id="light2" {{deivceStatus 'light2'}}>
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <div class="col-xs-12 margin-class">
-            <div class="vertical-align">Light 3</div>
-            <label class="switch vertical-align">
-                <input type="checkbox" class="light-switch" data-id="light3" {{deivceStatus 'light3'}}>
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <div class="col-xs-12 margin-class">
-            <div class="vertical-align">Light 4</div>
-            <label class="switch vertical-align">
-                <input type="checkbox" class="light-switch" data-id="light4" {{deivceStatus 'light4'}}>
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <div class="col-xs-12 margin-class">
-            <div class="vertical-align">Light 5</div>
-            <label class="switch vertical-align">
-                <input type="checkbox" class="light-switch" data-id="light5" {{deivceStatus 'light5'}}>
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <div class="col-xs-12 margin-class">
-            <div class="vertical-align">Light 6</div>
-            <label class="switch vertical-align">
-                <input type="checkbox" class="light-switch" data-id="light6" {{deivceStatus 'light6'}}>
-                <span class="slider round"></span>
-            </label>
-        </div>
-    </div>
+<template name="sidebar">
+    <nav class="menu" tabindex="0">
+        <div class="smartphone-menu-trigger"></div>
+        <header class="avatar">
+            <img src="2MOcP.jpg" />
+            <h2>{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</h2>
+        </header>
+        <ul>
+            <li class="icon-dashboard"><span>Dashboard</span></li>
+            <li class="icon-customers"><span>Customers</span></li>
+            <li class="icon-users"><span>Users</span></li>
+            <li class="icon-settings"><span>Settings</span></li>
+            <li class="icon-logout" id="logout-button"><span>Logout</span></li>
+        </ul>
+    </nav>
 </template>
