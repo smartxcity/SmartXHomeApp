@@ -1,26 +1,31 @@
 import { Template } from 'meteor/templating';
 import './dashboard.html';
 
-const deviceStatus = new Mongo.Collection('deviceStatus');
-
-Template.SmartXHomeDashBoard.onCreated(() => {
+Template.dashboard.onCreated(function() {
   let self = this;
-  Meteor.subscribe('allDeviceStatus');
-});
-
-Template.SmartXHomeDashBoard.helpers({
-  deivceStatus: (clientId) => {
-    let device = deviceStatus.findOne({ 'clientId': clientId });
-    return device && device.status ? 'checked' : '';
-  }
-});
-
-Template.SmartXHomeDashBoard.events({
-  'change .light-switch': (event) => {
-    if (event.target.checked) {
-      Meteor.call('turnonDevice', event.target.getAttribute('data-id'));
+  self.rooms = new ReactiveVar();
+  self.loading = new ReactiveVar(true);
+  Meteor.call('getCustomerRooms', (error, rooms) => {
+    if (error) {
+      sAlert.error(error.reason);
     } else {
-      Meteor.call('turnoffDevice', event.target.getAttribute('data-id'));
+      self.rooms.set(rooms);
     }
+    self.loading.set(false);
+  })
+});
+
+Template.dashboard.helpers({
+  rooms: () => {
+    return Template.instance().rooms.get();
+  },
+  loading: () => {
+    return Template.instance().loading.get();
   }
 });
+
+Template.dashboard.events({
+  'click .room-class': function() {
+    FlowRouter.go('/room/' + this._id);
+  }
+})

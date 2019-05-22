@@ -1,83 +1,24 @@
 @import '../imports/login/login.scss';
 @import '../imports/layout/sidebar.scss';
-
+@import '../imports/layout/component/card.scss';
+@import '../imports/layout/component/switch.scss';
 body {
-    font-family: sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
-.login-background {
-    background: #1180ff;
-    color: white;
-    height: 100vh;
-}
+#__blaze-root {
+    width: 100%;
+    overflow: hidden;
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
+    .app-wrapper {
+        margin-top: 40px;
+        margin-left: 240px;
+        padding:10px;
+    }
 
-/* Hide default HTML checkbox */
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* The slider */
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-input:checked+.slider {
-    background-color: #2196F3;
-}
-
-input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-    border-radius: 34px;
-}
-
-.vertical-align {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.margin-class {
-    margin: 10px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
+    @media screen and (max-width:900px) {
+        .app-wrapper {
+            margin-left: 0;
+        }
+    }
 }

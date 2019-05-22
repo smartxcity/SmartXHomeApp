@@ -10,6 +10,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#ffaa00">
+    <style type="text/css">
+    @import url("/fonts/font.css");
+    @import url("fonts/fontello.css");
+    </style>
 </head>
 
 <body>
@@ -21,26 +25,27 @@
 </body>
 <template name="outAppLayout">
     {{> sAlert}}
-    {{> Template.dynamic template=main}}
+    <div class="login-screen">
+        {{> Template.dynamic template=main}}
+    </div>
 </template>
 <template name="inAppLayout">
     {{> sAlert}}
-    {{> Template.dynamic template=sidebar}}
-    {{> Template.dynamic template=main}}
-</template>
-<template name="sidebar">
     <nav class="menu" tabindex="0">
         <div class="smartphone-menu-trigger"></div>
         <header class="avatar">
-            <img src="2MOcP.jpg" />
-            <h2>{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</h2>
+            <img src="/2MOcP.jpg" />
+            <h4>{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</h4>
         </header>
         <ul>
-            <li class="icon-dashboard"><span>Dashboard</span></li>
-            <li class="icon-customers"><span>Customers</span></li>
-            <li class="icon-users"><span>Users</span></li>
-            <li class="icon-settings"><span>Settings</span></li>
-            <li class="icon-logout" id="logout-button"><span>Logout</span></li>
+            <li id="dashboard-button"><i class="icon-home"></i><span>Dashboard</span></li>
+            <li><i class="icon-sliders"></i><span>Customers</span></li>
+            <li><i class="icon-users"></i><span>Users</span></li>
+            <li><i class="icon-cog"></i><span>Settings</span></li>
+            <li id="logout-button"><i class="icon-logout"></i><span>Logout</span></li>
         </ul>
     </nav>
+    <div class="app-wrapper">
+        {{> Template.dynamic template=main}}
+    </div>
 </template>

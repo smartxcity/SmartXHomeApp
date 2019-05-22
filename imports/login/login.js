@@ -13,7 +13,7 @@ Template.login.events({
       template.find("#login-password").value,
       function(error) {
         if (error) {
-          sAlert.error(error);
+          sAlert.error(error.reason);
         } else {
           FlowRouter.go('/dashboard');
         }

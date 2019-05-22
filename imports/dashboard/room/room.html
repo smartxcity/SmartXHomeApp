@@ -1,0 +1,13 @@
+<template name="room">
+    <div class="row text-center">
+        {{#each devices}}
+        <div class="col-xs-12 margin-class">
+            <div class="vertical-align">{{name}}</div>
+            <label class="switch vertical-align">
+                <input type="checkbox" class="light-switch" data-id="{{clientId}}" {{deivceStatus clientId}}>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        {{/each}}
+    </div>
+</template>

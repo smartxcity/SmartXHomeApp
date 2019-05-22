@@ -8,12 +8,12 @@
 
 .login-form {
     margin: auto;
-    padding: 15px;
-
+    padding: 100px 15px;  
     .login-logo {
         text-align: center;
-        img{
-        	width: 100px;
+
+        img {
+            width: 100px;
         }
     }
 }
@@ -22,4 +22,13 @@
     width: 100%;
     background: white;
     color: #1180ff;
+}
+
+.login-background {
+    height: 100vh;
+}
+
+.login-screen {
+    background: #1180ff;
+    color: white;
 }

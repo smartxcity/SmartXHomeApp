@@ -13,10 +13,13 @@ Meteor.startup(() => {
   });
 });
 
-Template.sidebar.events({
+Template.inAppLayout.events({
   'click #logout-button': () => {
     Meteor.logout(() => {
       FlowRouter.go('/');
     });
-  }
+  },
+  'click #dashboard-button': () => {
+    FlowRouter.go('/dashboard');
+  } 
 })

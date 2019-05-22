@@ -31,14 +31,26 @@ FlowRouter.route('/', {
   }
 });
 
-FlowRouter.route('/dashboard', {
+privateRoutes.route('/dashboard', {
   name: 'dashboard',
   triggersEnter: [
     checkLoggedIn
   ],
   action() {
     import('/imports/dashboard/dashboard.js').then(() => {
-      BlazeLayout.render('inAppLayout', { sidebar: 'sidebar', main: 'SmartXHomeDashBoard' });
+      BlazeLayout.render('inAppLayout', { main: 'dashboard' });
+    });
+  }
+});
+
+privateRoutes.route('/room/:roomId', {
+  name: 'room',
+  triggersEnter: [
+    checkLoggedIn
+  ],
+  action() {
+    import('/imports/dashboard/room/room.js').then(() => {
+      BlazeLayout.render('inAppLayout', { main: 'room' });
     });
   }
 });
