@@ -10,4 +10,38 @@
         </div>
         {{/each}}
     </div>
+    {{#if isInRole 'MANAGE_ROOM'}}
+    <a href="#" class="float-button" id="add-room-device-modal">
+        <div class="add">+</div>
+    </a>
+    {{/if}}
+</template>
+<template name="roomDeviceAddModal">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add room device</h4>
+                </div>
+                <form id="add-room-device">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Enter room device name" class="form-control required" id="room-device-add-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="room-device-add-type">Type:</label>
+                            <select id="room-device-add-type" class="form-control">
+                                <option value="LIGHT">Light</option>
+                                <option value="FAN">Fan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Add</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </template>

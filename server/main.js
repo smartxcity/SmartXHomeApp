@@ -1,9 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import mqtt from 'mqtt';
 import './dashboard.js';
+import './user.js';
 
 Meteor.startup(() => {
-  client = mqtt.connect('mqtt://13.235.15.87', { 'clientId': 'smartHomeBackenddev' });
+  client = mqtt.connect('mqtt://13.235.15.87', { 'clientId': 'smartHomeBackend' });
   // code to run on server at startup
   client.on('connect', function() {
     console.log('client connected');

@@ -39,9 +39,9 @@
         </header>
         <ul>
             <li id="dashboard-button"><i class="icon-home"></i><span>Dashboard</span></li>
-            <li><i class="icon-sliders"></i><span>Customers</span></li>
-            <li><i class="icon-users"></i><span>Users</span></li>
-            <li><i class="icon-cog"></i><span>Settings</span></li>
+            {{#if isInRole 'MANAGE_CUSTOMER'}}<li><i class="icon-sliders"></i><span>Customers</span></li>{{/if}}
+            {{#if isInRole 'MANAGE_USER'}}<li id="user-button"><i class="icon-users"></i><span>Users</span></li>{{/if}}
+            <!-- <li><i class="icon-cog"></i><span>Settings</span></li> -->
             <li id="logout-button"><i class="icon-logout"></i><span>Logout</span></li>
         </ul>
     </nav>

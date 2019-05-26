@@ -43,6 +43,18 @@ privateRoutes.route('/dashboard', {
   }
 });
 
+privateRoutes.route('/user', {
+  name: 'user',
+  triggersEnter: [
+    checkLoggedIn
+  ],
+  action() {
+    import('/imports/user/user.js').then(() => {
+      BlazeLayout.render('inAppLayout', { main: 'user' });
+    });
+  }
+});
+
 privateRoutes.route('/room/:roomId', {
   name: 'room',
   triggersEnter: [

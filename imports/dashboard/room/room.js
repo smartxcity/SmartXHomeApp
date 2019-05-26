@@ -5,26 +5,28 @@ import { DeviceStatus } from '../../collection';
 
 Template.room.onCreated(function() {
   let self = this;
-  self.devices = new ReactiveVar();
   const roomId = FlowRouter.current().params.roomId;
-  Session.set('deviceOfRoom-' + roomId, []);
+  Session.set('devicesOfRoom-' + roomId, []);
+  Session.set('deviceIdsOfRoom-' + roomId, [])
   Meteor.call('getDevicesForRoom', roomId, (error, devices) => {
     if (error) {
       sAlert.error(error.reason);
     } else {
-      self.devices.set(devices);
       const deviceClientIds = devices.map(a => a.clientId);
-      Session.set('deviceOfRoom-' + roomId, deviceClientIds);
+      Session.set('devicesOfRoom-' + roomId, devices);
+      Session.set('deviceIdsOfRoom-' + roomId, deviceClientIds);
     }
   });
   self.autorun(() => {
-    let subDeviceStatus = Meteor.subscribe('allDeviceStatus', Session.get('deviceOfRoom-' + roomId));
+    let subDeviceStatus = Meteor.subscribe('allDeviceStatus', Session.get('deviceIdsOfRoom-' + roomId));
   })
 });
 
 Template.room.helpers({
   devices: () => {
-    return Template.instance().devices.get();
+    const roomId = FlowRouter.current().params.roomId;
+    console.log(Session.get('devicesOfRoom-' + roomId));
+    return Session.get('devicesOfRoom-' + roomId);
   },
   deivceStatus: (clientId) => {
     let device = DeviceStatus.findOne({ 'clientId': clientId });
@@ -39,5 +41,37 @@ Template.room.events({
     } else {
       Meteor.call('turnoffDevice', event.target.getAttribute('data-id'));
     }
+  },
+  'click #add-room-device-modal': () => {
+    Modal.show('roomDeviceAddModal');
+  }
+});
+
+Template.roomDeviceAddModal.onRendered(() => {
+  $('#add-room-device').validate();
+});
+
+Template.roomDeviceAddModal.events({
+  'submit #add-room-device': (event, template) => {
+    event.preventDefault();
+    let deviceObj = {
+      name: $('#room-device-add-name').val(),
+      roomId: FlowRouter.current().params.roomId,
+      type: $('#room-device-add-type').val()
+    };
+    Meteor.call('addRoomDevice', deviceObj, (error, responseDevice) => {
+      if (error) {
+        sAlert.error(error.reason);
+      } else {
+        const roomId = FlowRouter.current().params.roomId;
+        let deviceClientIds = Session.get('deviceIdsOfRoom-' + roomId);
+        deviceClientIds.push(responseDevice.clientId);
+        let deviceList = Session.get('devicesOfRoom-' + roomId);
+        deviceList.push(responseDevice);
+        Session.set('devicesOfRoom-' + roomId, deviceList);
+        Session.set('deviceIdsOfRoom-' + roomId, deviceClientIds);
+      }
+    });
+    Modal.hide(template);
   }
 });

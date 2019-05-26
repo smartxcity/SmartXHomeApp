@@ -21,5 +21,8 @@ Template.inAppLayout.events({
   },
   'click #dashboard-button': () => {
     FlowRouter.go('/dashboard');
-  } 
+  },
+  'click #user-button': () => {
+    FlowRouter.go('/user');
+  }
 })

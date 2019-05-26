@@ -1,5 +1,8 @@
 <template name="dashboard">
     <div class="cards-list">
+        {{#if loading}}
+        Loading...
+        {{else}}
         {{#each rooms}}
         <div class="card room-class">
             <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" /> </div>
@@ -8,5 +11,33 @@
             </div>
         </div>
         {{/each}}
+        {{/if}}
     </div>
-</template>	
+    {{#if isInRole 'MANAGE_ROOM'}}
+    <a href="#" class="float-button" id="add-room-modal">
+        <div class="add">+</div>
+    </a>
+    {{/if}}
+</template>
+<template name="roomAddModal">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add room</h4>
+                </div>
+                <form id="add-room">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Enter room name" class="form-control required" id="room-add-name">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Add</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

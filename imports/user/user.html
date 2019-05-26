@@ -1,0 +1,43 @@
+<template name="user">
+    <h4>Users</h4>
+    {{#each users}}
+    <div>{{@index}}) {{profile.firstName}} {{profile.lastName}}</div>
+    {{/each}}
+    <a href="#" class="float-button" id="add-user-modal">
+        <div class="add">+</div>
+    </a>
+</template>
+<template name="userAddModal">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add user</h4>
+                </div>
+                <form id="add-user">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" name="firstName" placeholder="Enter First name" class="form-control" id="user-add-first-name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="lastName" placeholder="Enter last name" class="form-control" id="user-add-last-name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="email" placeholder="Enter email address" class="form-control" id="user-add-email">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="username" placeholder="Enter mobile number" class="form-control" id="user-add-mobile">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" placeholder="Enter password" class="form-control" id="user-add-password">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Add</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
